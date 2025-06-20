@@ -44,7 +44,7 @@ incluindo medidas das sépalas e pétalas. O objetivo é prever a espécie da fl
 """
 
 # Caminho do arquivo (relativo à raiz do projeto)
-dataset_path = "api/MachineLearning/dataset/dataset_iris.csv"
+dataset_path = "https://raw.githubusercontent.com/DanielleTorree/ML4Iris/main/api/MachineLearning/dataset/dataset_iris.csv"
 
 # Leitura
 dataset = pd.read_csv(dataset_path)
@@ -234,10 +234,10 @@ pd.DataFrame(y_test, columns=[dataset.columns[-1]]).to_csv("api/MachineLearning/
 #%% Simulação de predição em dados novos
 
 new_data = pd.DataFrame({
-    "SepalLengthCm": [5.1, 6.2, 4.7],
-    "SepalWidthCm": [3.5, 2.8, 3.2],
-    "PetalLengthCm": [1.4, 4.8, 1.3],
-    "PetalWidthCm": [0.2, 1.8, 0.2]
+    "SepalLengthCm": [5.1, 6.2, 5.9, 4.7],
+    "SepalWidthCm": [3.5, 2.8, 3.0, 3.2],
+    "PetalLengthCm": [1.4, 4.8, 4.2, 1.3],
+    "PetalWidthCm": [0.2, 1.8, 1.3, 0.2]
 })
 
 X_new = new_data.values.astype(float)
