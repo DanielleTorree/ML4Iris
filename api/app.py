@@ -55,26 +55,17 @@ def get_iris_list():
 # Rota de adição de iris
 @app.post('/iris', tags=[iris_tag],
           responses={"200": IrisViewSchema, "400": ErrorSchema, "409": ErrorSchema})
-def predict():
+def predict(form: IrisSchema):
     """
         Adiciona uma nova iris à base dados 
         e retorna uma representação das iris com a predição associada
     """
-    # Acessa os dados enviados via JSON
-    data = request.get_json()
-    print(">>> Dados recebidos:", data)
-
-    # Constrói o objeto Pydantic IrisSchema a partir do JSON
-    try:
-        form = IrisSchema(**data)
-    except Exception as e:
-        return {"message": "Erro ao validar os dados recebidos", "erro": str(e)}, 400
 
     preprocessador = PreProcessador()
     pipeline = Pipeline()
     
     # Recupera os dados do form
-    sepal_length_cm = form.sepal_length_cm
+    sepal_length_cm = form.sepal_length_cm 
     sepal_width_cm = form.sepal_width_cm
     petal_length_cm = form.petal_length_cm
     petal_width_cm = form.petal_width_cm
