@@ -24,7 +24,7 @@ def home():
     """
         Redireciona para o index.html do front.
     """
-    return redirect('/front/index.html')
+    return redirect('http://localhost:4200', code=302)
 
 @app.get('/docs', tags=[home_tag])
 def docs():
