@@ -1,11 +1,14 @@
 from flask_openapi3 import OpenAPI, Info, Tag
 from flask import redirect
+from flask import request
 from urllib.parse import unquote
 
 from model import *
 from logger import logger
 from schemas import *
 from flask_cors import CORS
+
+from sqlalchemy import and_
 
 # Instância de API 
 info = Info(title="My API", version="1.0.0")
@@ -52,17 +55,26 @@ def get_iris_list():
 # Rota de adição de iris
 @app.post('/iris', tags=[iris_tag],
           responses={"200": IrisViewSchema, "400": ErrorSchema, "409": ErrorSchema})
-def predict(form: IrisSchema):
+def predict():
     """
         Adiciona uma nova iris à base dados 
         e retorna uma representação das iris com a predição associada
     """
+    # Acessa os dados enviados via JSON
+    data = request.get_json()
+    print(">>> Dados recebidos:", data)
+
+    # Constrói o objeto Pydantic IrisSchema a partir do JSON
+    try:
+        form = IrisSchema(**data)
+    except Exception as e:
+        return {"message": "Erro ao validar os dados recebidos", "erro": str(e)}, 400
 
     preprocessador = PreProcessador()
     pipeline = Pipeline()
     
     # Recupera os dados do form
-    sepal_length_cm = form.sepal_length_cm 
+    sepal_length_cm = form.sepal_length_cm
     sepal_width_cm = form.sepal_width_cm
     petal_length_cm = form.petal_length_cm
     petal_width_cm = form.petal_width_cm
@@ -94,17 +106,6 @@ def predict(form: IrisSchema):
     try:
         # Cria conexão com a base de dados
         session = Session()
-
-        # Checa de iris já existe
-        if session.query(Iris).filter(
-            (Iris.sepal_length_cm == form.sepal_length_cm ) &
-            (Iris.sepal_width_cm == form.sepal_width_cm) &
-            (Iris.petal_length_cm == form.petal_length_cm) &
-            (Iris.petal_width_cm == form.petal_width_cm)
-        ).first():
-            error_message = "Características de iris já existentes na base"
-            logger.warning(f"Erro ao adiciona iris: {error_message}")
-            return {"message": error_message}, 409
         
         # Adiciona iris
         session.add(iris)
