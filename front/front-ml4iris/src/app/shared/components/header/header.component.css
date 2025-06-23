@@ -1,0 +1,23 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  button {
+    margin: 0 4px;
+  }
+}
+
+.iris-toolbar {
+  background-color: #7B61FF; 
+  color: white;
+}

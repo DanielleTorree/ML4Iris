@@ -1,0 +1,76 @@
+/* FORMULÁRIO */
+.form-card {
+  background-color: #fff;
+  padding: 16px;
+  margin: 40px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+/* GRUPOS DE INPUTS */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.input-label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.input-field {
+  width: 100%;
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.button-wrapper button {
+  height: 56px;
+  padding: 0 2rem;
+  background-color: #7B61FF;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  text-transform: none;
+  box-shadow: none;
+  margin-top: -75px
+}
+
+/* CONTAINER DA TABELA */
+.tabela-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 100px
+}
+
+/* TABELA */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 8px;
+  text-align: left;
+}
