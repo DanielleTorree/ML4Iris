@@ -24,6 +24,18 @@ export class IrisService {
 
   saveIris(data: IrisInput): Observable<Iris> {
     const url = `${this.baseUrl}/iris`;
-    return this.http.post<Iris>(url, data);
+
+    const formData = new FormData();
+    formData.append('sepal_length_cm', data.sepal_length_cm.toString());
+    formData.append('sepal_width_cm', data.sepal_width_cm.toString());
+    formData.append('petal_length_cm', data.petal_length_cm.toString());
+    formData.append('petal_width_cm', data.petal_width_cm.toString());
+
+    return this.http.post<Iris>(url, formData);
+  }
+
+  deleteIris(id: number): Observable<Iris> {
+    const url = `${this.baseUrl}/iris?id=${id}`;
+    return this.http.delete<Iris>(url);
   }
 }
