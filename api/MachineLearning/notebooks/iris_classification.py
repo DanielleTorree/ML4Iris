@@ -43,7 +43,7 @@ O dataset Iris contém informações sobre diferentes espécies de flores,
 incluindo medidas das sépalas e pétalas. O objetivo é prever a espécie da flor.
 """
 
-# Caminho do arquivo (relativo à raiz do projeto)
+# Caminho do arquivo
 dataset_path = "https://raw.githubusercontent.com/DanielleTorree/ML4Iris/main/api/MachineLearning/dataset/dataset_iris.csv"
 
 # Leitura
