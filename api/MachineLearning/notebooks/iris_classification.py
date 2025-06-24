@@ -5,32 +5,25 @@ Classificação do dataset Iris
 
 #%% Ambiente e Imports
 
-# Oculta warnings
 import warnings
 warnings.filterwarnings("ignore")
 
-# Bibliotecas essenciais
 import pandas as pd
 import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 
-# Pré-processamento e modelos
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
-from sklearn.model_selection import GridSearchCV
-
+from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score, GridSearchCV
 from sklearn.metrics import accuracy_score
-from sklearn.pipeline import Pipeline
+from sklearn.pipeline import Pipeline, make_pipeline
 
-# Modelos básicos
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
-# Ensembles
 from sklearn.ensemble import (
     BaggingClassifier, RandomForestClassifier, ExtraTreesClassifier,
     VotingClassifier, AdaBoostClassifier, GradientBoostingClassifier
@@ -132,7 +125,7 @@ plt.show()
 #%% Modelagem com dados padronizados e normalizados usando Pipelines
 
 standard_scaler = ("StandardScaler", StandardScaler())
-minmax_scaler = ("MinMxScaler", MinMaxScaler())
+minmax_scaler = ("MinMaxScaler", MinMaxScaler())
 
 pipelines = []
 
