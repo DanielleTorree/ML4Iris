@@ -98,6 +98,26 @@ def predict(form: IrisSchema):
         # Cria conexão com a base de dados
         session = Session()
         
+        from sqlalchemy import tuple_
+
+        if session.query(Iris).filter(
+            tuple_(
+                Iris.sepal_length_cm,
+                Iris.sepal_width_cm,
+                Iris.petal_length_cm,
+                Iris.petal_width_cm
+            ) == (
+                form.sepal_length_cm,
+                form.sepal_width_cm,
+                form.petal_length_cm,
+                form.petal_width_cm
+            )
+        ).first():
+            error_msg = "Iris já existente na base de dados."
+            logger.warning(f"Erro ao adicionar iris, {error_msg}")
+            return {"message": error_msg}, 409
+
+
         # Adiciona iris
         session.add(iris)
         # Commit
